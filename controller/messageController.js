@@ -19,20 +19,19 @@ const sendMessage=async(req,res,)=>{
 const recieveMessage=async(req,res)=>{
     try {
         const {senderId,recieverId}=req.query;
-        console.log(senderId,recieverId);
-        
         const messages=await MessageModel.findAll({
-            where:{
+            where:{  
               [Op.or]:[
                 {senderId:senderId,recieverId:recieverId},
                 {senderId:recieverId,recieverId:senderId}
               ] 
 
-            },
-            order:[["createdAt","ASC"]]
+            }
+            // order:[["createdAt","ASC"]]
         })
 
         res.status(200).json({success:true,messages,message:"Message fetched false"})
+
         
     } catch (error) {
         res.status(500).json({success:false,message:"Mesage not created"})
