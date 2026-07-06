@@ -11,11 +11,15 @@
     "start": "nodemon app.js"
   },
   "dependencies": {
+    "@google/genai": "^2.10.0",
+    "aws-sdk": "^2.1693.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
+    "cron": "^4.4.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
+    "multer": "^2.2.0",
     "mysql2": "^3.22.3",
     "nodemon": "^3.1.14",
     "sequelize": "^6.37.8",

@@ -20,6 +20,28 @@ const users=sequelize.define(
           allowNull:false  ,
           unique:true 
         },
+        profile:{
+          type:DataTypes.STRING,
+
+        },
+        cover:{
+          type:DataTypes.STRING,
+        },
+        location:{
+          type:DataTypes.STRING,
+        },
+        dob:{
+          type:DataTypes.STRING,
+        },
+        maritalStatus:{
+          type:DataTypes.STRING,
+        },
+        gender:{
+          type:DataTypes.STRING,
+        },
+        language: {
+          type: DataTypes.STRING
+          },
         mobile:{
           type:DataTypes.STRING,
           allowNull:false  

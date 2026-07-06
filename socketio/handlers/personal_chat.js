@@ -1,13 +1,59 @@
-module.exports=(socket,io)=>{
+const MessageModel=require("../../models/MessageModel.js")
 
-    socket.on("join-room",(roomName)=>{
+
+
+const personalChatHandler=(socket,io)=>{
+  console.log(socket.id,"fsfskjjnjknjn");
+  
+    socket.on("join",(roomName)=>{
+        console.log(socket.join,roomName,"roomname");
+        
         socket.join(roomName);
-        console.log("room joined",roomName)
+        console.log("join successfully");
+        
     })
-     socket.on("personal-message",({message,roomName})=>{
-        console.log(message,roomName,"fgdfgdfgdf");
-                
-        io.to(roomName).emit("personal-recieve-message",{message,userName:socket.user.name,roomName})
+     socket.on("personal-message",async({messageData,roomName,createdAt})=>{ 
+        console.log(messageData,"messgae");
+        
+         await MessageModel.create(messageData)
+        io.to(roomName).emit("personal-recieve-message",{...messageData,createdAt})
      })
      
 }
+// const personalChatHandler = (socket, io) => {
+//     socket.on("join", (roomName) => {
+//         socket.join(roomName);
+//     });
+
+//     socket.on("personal-message", async({messageData,roomName,createdAt}) => {
+//          await MessageModel.create(messageData)
+//           io.to(roomName).emit("personal-recieve-message", {...messageData,createdAt});
+//     });
+// };
+module.exports={
+    personalChatHandler
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

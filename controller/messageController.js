@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 const MessageModel = require("../models/MessageModel");
+const { awsS3Services } = require("../services/awsS3bucket");
 
 const sendMessage=async(req,res,)=>{
     try {
@@ -26,11 +27,11 @@ const recieveMessage=async(req,res)=>{
                 {senderId:recieverId,recieverId:senderId}
               ] 
 
-            }
-            // order:[["createdAt","ASC"]]
+            },
+            order:[["createdAt","ASC"]]
         })
 
-        res.status(200).json({success:true,messages,message:"Message fetched false"})
+        res.status(200).json({success:true,messages,message:"Message fetched successfully"})
 
         
     } catch (error) {
@@ -40,7 +41,30 @@ const recieveMessage=async(req,res)=>{
 }
 
 
+     const sendMedia=async(req,res)=>{            
+
+        try {
+            const file = req.file;
+            console.log(file,"file");
+            
+    
+    
+            const url = await awsS3Services(file);
+        
+            res.json({
+                url,success:true,message:"Image upload successfully"
+            });
+            
+    
+           
+        } catch (error) {
+           console.log(error);
+            
+        }
+    }
+
 module.exports={
     sendMessage,
-    recieveMessage
+    recieveMessage,
+    sendMedia
 }

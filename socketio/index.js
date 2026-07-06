@@ -1,7 +1,7 @@
 const { Server } = require("socket.io");
 const  socketAuth  = require("./middleware");
 const chatHandler=require("./handlers/chat.js")
-const personalChatHandler=require("./handlers/personal_chat.js")
+const {personalChatHandler}  =require("./handlers/personal_chat.js")
 const socketConnection=(server)=>{
         const io=new Server(server,{
             cors:{
@@ -10,10 +10,15 @@ const socketConnection=(server)=>{
                 credentials:true
             }
         });
+         console.log(io,"jgjhkfg");
+
          socketAuth(io)
-         io.on("connection",(socket)=>{   
-        chatHandler(socket,io)   
-        personalChatHandler(socket,io)   
+         console.log("hdfghfghfg");
+         
+         io.on("connection",(socket)=>{  
+            console.log(socket.id,"hgffhgk");
+                         
+           personalChatHandler(socket,io)   
           })
 
 

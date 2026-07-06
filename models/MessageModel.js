@@ -10,20 +10,24 @@ const MessageModel=sequelize.define(
             autoIncrement:true,
             allowNull:false
         },
-        message:{
-          type:DataTypes.STRING,
-          allowNull:false ,
-
-        },
-        senderId:{
+         senderId:{
           type:DataTypes.INTEGER,
           allowNull:false  ,
         },
-       recieverId:{
-        type:DataTypes.INTEGER,
-        allowNull:false  
-       }
-        
+        recieverId:{
+          type:DataTypes.INTEGER,
+          allowNull:false  
+        },
+         messageType:{
+           type:DataTypes.STRING,
+           allowNull:false ,
+        },
+        message:{
+          type:DataTypes.STRING,
+        },
+        media:{
+           type:DataTypes.STRING
+        }
     }
 
 )

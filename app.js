@@ -9,11 +9,13 @@ const UserModel=require("./models/UserModel.js")
 const MessageModel=require("./models/MessageModel.js")
 const userRoute=require("./routes/UserRoute.js")
 const messageRoute=require("./routes/MessageRoute.js");
+const archievedMessageRoute=require("./routes/ArchievedRoute.js");
+const AiRoute=require("./routes/AiRoute.js");
 //socket io
 const  {createServer} =require("http")
 const jwt=require("jsonwebtoken")
 const {socketConnection}=require("./socketio/index.js")
-
+const cron=require("./services/chroneService.js")
 const server=new createServer(app);
 
 
@@ -28,6 +30,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use("/users",userRoute)
 app.use("/message",messageRoute)
+app.use("/archieved",archievedMessageRoute)
+app.use("/ai",AiRoute)
 
 
 
