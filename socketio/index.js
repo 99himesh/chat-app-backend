@@ -10,14 +10,8 @@ const socketConnection=(server)=>{
                 credentials:true
             }
         });
-         console.log(io,"jgjhkfg");
-
-         socketAuth(io)
-         console.log("hdfghfghfg");
-         
-         io.on("connection",(socket)=>{  
-            console.log(socket.id,"hgffhgk");
-                         
+         socketAuth(io)         
+         io.on("connection",(socket)=>{                           
            personalChatHandler(socket,io)   
           })
 
