@@ -6,7 +6,8 @@ const sequelize = new Sequelize('chatApp', 'root', 'Himesh1999@', {
 });
 
 
-(async ()=>{try {
+(async ()=>{
+  try {
   await sequelize.authenticate();
   console.log('Connection has been established successfully.');
 } catch (error) {
